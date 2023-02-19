@@ -72,5 +72,6 @@ def main(event, context):
     dakoku_button = driver.find_element_by_css_selector(DAKOKU_BUTTON_SELECTOR)
     print(dakoku_button.text)
     dakoku_button.click()
+    time.sleep(10)
 
     driver.quit()
