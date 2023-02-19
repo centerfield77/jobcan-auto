@@ -1,19 +1,27 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import os,time
+from secretManager import get_secret_version
+import jpholiday
+import os,time,datetime
 
-from webdriver_manager.chrome import ChromeDriverManager
 
-def main():
+def main(event, context):
+
     # URL
     TOP_PAGE_URL = 'https://id.jobcan.jp/users/sign_in'
 
+    # cloud functionの環境変数からproject_idを取得
+    PROJECT_ID = os.environ.get('PROJECT_ID')
+
     # ログイン情報
-    MAIL_ADDRESS = 'MAIL_ADDRESS'
-    PASSWORD = 'PASSWORD'
+    MAIL_ADDRESS = get_secret_version(PROJECT_ID, 'secret_mail')
+    PASSWORD = get_secret_version(PROJECT_ID, 'secret_password')
 
     # CSSセレクタ
     MAIL_INPUT_SELECTOR = '#user_email'
@@ -23,10 +31,17 @@ def main():
     DAKOKU_BUTTON_SELECTOR = '#adit-button-push'
 
 
+    # 祝日だったら何もせず終了
+    is_holiday = jpholiday.is_holiday(datetime.date.today()) 
+    if is_holiday:
+        print('Today is holiday.')
+        return
+    
+
     # seleniumの初期化
     path = os.getcwd()
-    driverPath = path + '/crawler/chromedriver'
-    headlessPath = path + '/crawler/headless-chromium'
+    driverPath = path + '/bin/chromedriver'
+    headlessPath = path + '/bin/headless-chromium'
     options = Options()
     options.binary_location = headlessPath
     driver = webdriver.Chrome(driverPath, options=options)
