@@ -1,1 +1,10 @@
+__pycache__/
+bin
 tempCodeRunnerFile.py
+.terraform/
+*.json
+*.hcl
+*.info
+*.zip
+*.tfstate
+*.backup
