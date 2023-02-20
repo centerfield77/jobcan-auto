@@ -29,7 +29,7 @@ apply時に対話方式で必要な情報をセットします
   - 例: /Users/xxx/Downloads/jobcan-auto-xxx.json
 - `cron`
   - Cloud Schedulerに登録するcron
-  - 例: * 9,12,13,18 * * 1-5（← 平日の9時、12時、13時、18時に実行）
+  - 例: 0 9,12,13,17 * * 1,2,3,4,5（← 平日の9時、12時、13時、18時に実行）
 - `jobcan_email`
   - ジョブカンにログインするときのメールアドレス
   - **この情報はSecret Managerに保存されます**

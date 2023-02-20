@@ -92,7 +92,7 @@ resource "google_pubsub_topic" "topic" {
 resource "google_cloud_scheduler_job" "jobcan-auto-scheduler" {
   name      = "jobcan-auto-scheduler"
   project   = var.project_id
-  schedule  = "${var.cron}" // 例: 平日の9時、12時、13時、18時に実行 → * 9,12,13,18 * * 1-5
+  schedule  = "${var.cron}" // 例: 平日の9時、12時、13時、18時に実行 → 0 9,12,13,17 * * 1,2,3,4,5
   time_zone = "Asia/Tokyo"
 
   pubsub_target {
