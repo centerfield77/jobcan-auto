@@ -17,6 +17,9 @@ git clone https://github.com/centerfield77/jobcan-auto.git
 ### Google Cloudでプロジェクト作成
 - サービスアカウントを作成し、キー(json)をローカルに保存する。
 - 「編集者」「Project IAM 管理者」「Secret Manager 管理者」のロールを割り当てる
+- 以下のAPIを有効化します
+  - Cloud Functions
+  - Cloud Resource Manager
 
 ### デプロイ
 ```
